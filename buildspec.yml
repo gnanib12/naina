@@ -1,0 +1,24 @@
+version: 0.2
+phases:
+  install:
+    run-as: root
+    commands:
+      - echo install phases
+      - yum update -y
+      - amazon-linux-extras install -y docker 
+      - systemctl start docker.service
+      - usermod -aG docker ec2-user
+  pre_build:
+    commands:
+      - echo nothing to do in prebuild
+  build:
+    run-as: root
+    commands:
+      - echo build stage
+      - docker pull nginx && mkdir gnani
+      - cp -R ./* /home/ec2-user/gnani 
+      - docker run --name webserver -p 80:80 -v /home/ec2-user/gnani:/usr/share/nginx/html -d nginx
+  post_build:
+    commands:
+      - echo nothing to do in post build.
+
