@@ -4,18 +4,19 @@ phases:
     run-as: root
     commands:
       - echo install phases
-      - apt-get update -y &&  apt-get install -y nginx
+      - apt-get update -y &&  apt-get install -y docker && apt-get install -y docker.io
   pre_build:
     run-as: root
     commands:
       - echo nothing to do in prebuild
-      - service nginx start
+      - service docker start
   build:
     run-as: root
     commands:
       - echo build stage
-      - cd /usr/share/nginx/html && rm -rf index.html
-      - cp -R /* /usr/share/nginx/html
+      - docker pull nginx && mkdir gnani
+      - cp -R /* /home/ubuntu/gnani
+      - docker run --name webserver -p 80:80 -v /home/ubuntu/gnani:/usr/share/nginx/html -d nginx
   post_build:
     commands:
       - echo nothing to do in post build.
