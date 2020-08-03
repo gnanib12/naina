@@ -15,7 +15,7 @@ phases:
     commands:
       - echo build stage
       - cd /usr/share/nginx/html && rm -rf index.html
-      - cp -R /css /fonts /img /scripts /appspec.yml /buildspec.yml /index.html /LICENSE /README.md /usr/share/nginx/html
+      - cp -R /* /usr/share/nginx/html
   post_build:
     commands:
       - echo nothing to do in post build.
