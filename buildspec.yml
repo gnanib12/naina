@@ -4,7 +4,7 @@ phases:
     run-as: root
     commands:
       - echo install phases
-      - apt install docker 
+      - apt-get update -y && apt-get install docker -y
       - systemctl start docker.service
       - usermod -aG docker ubuntu
   pre_build:
