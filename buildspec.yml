@@ -9,7 +9,7 @@ phases:
     run-as: root
     commands:
       - echo nothing to do in prebuild
-      - systemctl start docker.service
+      - service start docker
   build:
     run-as: root
     commands:
