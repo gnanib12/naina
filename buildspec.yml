@@ -6,6 +6,7 @@ phases:
       - echo install phases
       - apt-get update -y &&  apt-get install -y nginx
   pre_build:
+    run-as: root
     commands:
       - echo nothing to do in prebuild
       - sudo service nginx start
