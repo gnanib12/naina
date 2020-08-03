@@ -4,7 +4,7 @@ phases:
     run-as: root
     commands:
       - echo install phases
-      - yum update -y &&  amazon-linux-extras install -y docker
+      - yum update -y && yum install -y amazon-linux-extras &&  amazon-linux-extras install -y docker
   pre_build:
     run-as: root
     commands:
