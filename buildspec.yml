@@ -9,7 +9,7 @@ phases:
     run-as: root
     commands:
       - echo nothing to do in prebuild
-      - sudo service nginx start
+      - service nginx start
   build:
     run-as: root
     commands:
