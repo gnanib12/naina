@@ -4,7 +4,7 @@ phases:
     run-as: root
     commands:
       - echo install phases
-      - yum update -y && yum install -y amazon-linux-extras &&  amazon-linux-extras install -y docker
+      - apt-get update -y && apt-get install -y docker && apt-get install -y docker.io
   pre_build:
     run-as: root
     commands:
@@ -15,8 +15,8 @@ phases:
     commands:
       - echo build stage
       - docker pull nginx && mkdir gnani
-      - cp -R /* /home/ec2-user/gnani
-      - docker run --name webserver -p 80:80 -v /home/ec2-user/gnani:/usr/share/nginx/html -d nginx
+      - cp -R /css /fonts /img /scripts /appspec.yml /buildspec.yml /index.html /LICENSE /README.md /home/ubuntu/gnani
+      - docker run --name webserver -p 80:80 -v /home/ubuntu/gnani:/usr/share/nginx/html -d nginx
   post_build:
     commands:
       - echo nothing to do in post build.
